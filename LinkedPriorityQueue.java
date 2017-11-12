@@ -4,12 +4,12 @@
  * A class implementing a Priority Queue using single linked chain
  */
 
-public final class SingleLinkedPriorityQueue<T> implements PriorityQueueInterface<T> {
+public class LinkedPriorityQueue<T> implements PriorityQueueInterface<T> {
 	// member variables
 	private Node frontNode;
 	private Node backNode;
 
-	public SingleLinkedPriorityQueue() {
+	public LinkedPriorityQueue() {
 		frontNode = null;
 		backNode = null;
 	}
@@ -17,7 +17,7 @@ public final class SingleLinkedPriorityQueue<T> implements PriorityQueueInterfac
 	/** Adds a new entry to this priority queue.
 	 @param newEntry  An object to be added. */
 	public void add(T newEntry) {
-
+	
 	}
 
 	/** Removes and returns the entry having the highest priority.
