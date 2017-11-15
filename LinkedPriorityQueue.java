@@ -17,7 +17,7 @@ public class LinkedPriorityQueue<T> implements PriorityQueueInterface<T> {
 	/** Adds a new entry to this priority queue.
 	 @param newEntry  An object to be added. */
 	public void add(T newEntry) {
-	
+		
 	}
 
 	/** Removes and returns the entry having the highest priority.
