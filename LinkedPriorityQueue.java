@@ -1,5 +1,3 @@
-
-
 /**
  * A class implementing a Priority Queue using single linked chain
  */
@@ -8,10 +6,12 @@ public class LinkedPriorityQueue<T extends Comparable<? super T>> implements Pri
 	// member variables
 	private Node frontNode;
 	private Node backNode;
+	private int size;
 
 	LinkedPriorityQueue() {
 		frontNode = null;
 		backNode = null;
+		size = 0;
 	}
 
 	/** Adds a new entry to this priority queue.
@@ -19,21 +19,28 @@ public class LinkedPriorityQueue<T extends Comparable<? super T>> implements Pri
 	public void add(T newEntry) {
 		Node newNode = new Node(newEntry, null);
 		
-		do {
-			// if queue is empty
-			if(isEmpty()) {
-				frontNode = newNode;
-				backNode = newNode;
-				break;
+		if(isEmpty()) { // if queue is empty
+			frontNode = newNode;
+			backNode = newNode;
+		}
+		else if(newNode.getData().compareTo(backNode.getData()) <= 0) { // if priority is less or equal to last item
+			backNode.setNextNode(newNode);
+			backNode = newNode;
+		}
+		else {
+			Node savedNode = frontNode;
+			
+			while (frontNode != backNode) {
+				if (newNode.getData().compareTo(frontNode.getData()) > 0)
+					frontNode = newNode;
+				
+				frontNode = frontNode.getNextNode();
 			}
 			
-			// compare priorities
-			if(newEntry.compareTo(backNode.getData()) <= 0) {
-			
-			}
-		} while (frontNode.getNextNode() != backNode);
+			frontNode = savedNode;
+		}
 		
-		
+		size++;
 	}
 
 	/** Removes and returns the entry having the highest priority.
@@ -42,12 +49,14 @@ public class LinkedPriorityQueue<T extends Comparable<? super T>> implements Pri
 	public T remove() {
 		if (isEmpty())
 			return null;
-		
-		// search for highest priority
-		
-		
-		while (frontNode.getNextNode() != null) {
-		
+		else {
+			size--;
+			
+			T highestPriority = frontNode.getData();
+			
+			frontNode = frontNode.getNextNode();
+			
+			return highestPriority;
 		}
 	}
 
@@ -55,52 +64,56 @@ public class LinkedPriorityQueue<T extends Comparable<? super T>> implements Pri
 	 @return  Either the object having the highest priority or,
 	 if the priority queue is empty, null. */
 	public T peek() {
-
+		if (isEmpty())
+			return null;
+		else
+			return frontNode.getData();
 	}
 
 	/** Detects whether this priority queue is empty.
 	 @return  True if the priority queue is empty, or false otherwise. */
 	public boolean isEmpty() {
-
+		return frontNode == null && backNode == null;
 	}
 
 	/** Gets the size of this priority queue.
 	 @return  The number of entries currently in the priority queue. */
 	public int getSize() {
-
+		return size;
 	}
 
 	/** Removes all entries from this priority queue. */
 	public void clear() {
-
+		frontNode = null;
+		backNode = null;
+		size = 0;
 	}
-
-	/** Implements Node class */
+	
+	/** Node class */
 	private class Node {
 		private T data;
-		private Node next;
-
-		Node(T data, Node next) {
-			this.data = data;
+		private Node next; // next node
+		
+		Node(T newEntry, Node next) {
+			this.data = newEntry;
 			this.next = next;
 		}
-
-		public T getData() {
+		
+		T getData() {
 			return data;
 		}
-
-		private void setData(T newData) {
+		
+		void setData(T newData) {
 			data = newData;
 		}
-
-		public Node getNextNode() {
+		
+		Node getNextNode() {
 			return next;
 		}
-
-		private void setNextNode(Node newNode) {
+		
+		void setNextNode(Node newNode) {
 			next = newNode;
 		}
-
 	}
 
 }
