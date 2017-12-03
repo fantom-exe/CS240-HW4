@@ -4,12 +4,12 @@
  * A class implementing a Priority Queue using single linked chain
  */
 
-public class LinkedPriorityQueue<T> implements PriorityQueueInterface<T> {
+public class LinkedPriorityQueue<T extends Comparable<? super T>> implements PriorityQueueInterface<T> {
 	// member variables
 	private Node frontNode;
 	private Node backNode;
 
-	public LinkedPriorityQueue() {
+	LinkedPriorityQueue() {
 		frontNode = null;
 		backNode = null;
 	}
@@ -17,6 +17,22 @@ public class LinkedPriorityQueue<T> implements PriorityQueueInterface<T> {
 	/** Adds a new entry to this priority queue.
 	 @param newEntry  An object to be added. */
 	public void add(T newEntry) {
+		Node newNode = new Node(newEntry, null);
+		
+		do {
+			// if queue is empty
+			if(isEmpty()) {
+				frontNode = newNode;
+				backNode = newNode;
+				break;
+			}
+			
+			// compare priorities
+			if(newEntry.compareTo(backNode.getData()) <= 0) {
+			
+			}
+		} while (frontNode.getNextNode() != backNode);
+		
 		
 	}
 
@@ -24,7 +40,15 @@ public class LinkedPriorityQueue<T> implements PriorityQueueInterface<T> {
 	 @return  Either the object having the highest priority or,
 	 if the priority queue is empty before the operation, null. */
 	public T remove() {
-
+		if (isEmpty())
+			return null;
+		
+		// search for highest priority
+		
+		
+		while (frontNode.getNextNode() != null) {
+		
+		}
 	}
 
 	/** Retrieves the entry having the highest priority.
