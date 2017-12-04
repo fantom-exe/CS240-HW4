@@ -51,7 +51,6 @@ public class LinkedPriorityQueue<T extends Comparable<? super T>> implements Pri
 			
 		}
 		
-		backNode = newNode;
 		size++;
 	}
 

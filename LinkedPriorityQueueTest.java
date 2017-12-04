@@ -51,13 +51,13 @@ public class LinkedPriorityQueueTest {
 		
 		System.out.println(priorityQueue.remove()); // 1
 		
-		System.out.println(priorityQueue.remove()); // 1
+		System.out.println(priorityQueue.remove()); // 2
 		
-		System.out.println(priorityQueue.remove()); // 1
+		System.out.println(priorityQueue.remove()); // 2
 		
-		System.out.println(priorityQueue.remove()); // 1
+		System.out.println(priorityQueue.remove()); // 3
 		
-		System.out.println(priorityQueue.remove()); // 1
+		System.out.println(priorityQueue.remove()); // null
 		
 	}
 	
