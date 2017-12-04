@@ -1,6 +1,4 @@
-import java.util.PriorityQueue;
-
-public class LinkedPriorityQueueTest {
+public class ArrayListTest {
 	
 	public static void main(String[] args) { // rename to 'main' and run
 		LinkedPriorityQueue priorityQueue = new LinkedPriorityQueue();

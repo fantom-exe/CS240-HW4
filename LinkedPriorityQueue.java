@@ -23,23 +23,35 @@ public class LinkedPriorityQueue<T extends Comparable<? super T>> implements Pri
 			frontNode = newNode;
 			backNode = newNode;
 		}
-		else if(newNode.getData().compareTo(backNode.getData()) <= 0) { // if priority is less or equal to last item
+		else if(newNode.getData().compareTo(backNode.getData()) >= 0) { // if priority is lower than or equal to end of queue
 			backNode.setNextNode(newNode);
 			backNode = newNode;
 		}
-		else {
-			Node savedNode = frontNode;
+		else if (newNode.getData().compareTo(frontNode.getData()) <= 0) { // if priority higher than front of queue
+			newNode.setNextNode(frontNode);
+			frontNode = newNode;
+		}
+		else if(newNode.getData().compareTo(backNode.getData()) < 0){ // if priority is higher than end of queue
+			Node currentNode = frontNode;
 			
-			while (frontNode != backNode) {
-				if (newNode.getData().compareTo(frontNode.getData()) > 0)
-					frontNode = newNode;
+			System.out.println("ELSE ");
+			
+			for(int i = 0; i <= size; i++) {
+				if (newNode.getData().compareTo(currentNode.getData()) > 0) {
+					newNode.setNextNode(currentNode.getNextNode());
+					currentNode.setNextNode(newNode);
+					break;
+				}
 				
-				frontNode = frontNode.getNextNode();
+				currentNode.setData(currentNode.getNextNode().getData());
+				currentNode.setNextNode(currentNode.getNextNode());
+				
+				System.out.println("ELSE WHILE");
 			}
 			
-			frontNode = savedNode;
 		}
 		
+		backNode = newNode;
 		size++;
 	}
 
@@ -54,7 +66,11 @@ public class LinkedPriorityQueue<T extends Comparable<? super T>> implements Pri
 			
 			T highestPriority = frontNode.getData();
 			
+			frontNode.setData(null);
 			frontNode = frontNode.getNextNode();
+			
+			if(frontNode == null)
+				backNode = null;
 			
 			return highestPriority;
 		}
