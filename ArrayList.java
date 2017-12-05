@@ -25,11 +25,10 @@ public class ArrayList<T> implements ListInterface<T> {
 			throw new IndexOutOfBoundsException();
 		
 		// store current item at position
-		T temp = null;
-		list[newPosition] = newEntry;
+		T temp = list[newPosition];
 		
 		for(int i = 0; i < currentSize; i++) {
-			list[i] = temp;
+			list[newPosition+1] = temp;
 		}
 		currentSize++;
 	}
