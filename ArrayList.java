@@ -1,5 +1,5 @@
 /**
- * A class implementing a Priority Queue using single linked chain
+ * A class implementing a List using Fixed Size Array
  */
 public class ArrayList<T> implements ListInterface<T> {
 	// member variables
